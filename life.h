@@ -12,9 +12,8 @@ class Board {
     void tick();
     void print();
   private:
-    std::vector<int> neighbors_(int row, int col);
+    int num_live_neighbors_(int row, int col);
     std::vector<bool> contents_;
-    std::vector<bool> next_;
     int nrows_;
     int ncols_;
 };

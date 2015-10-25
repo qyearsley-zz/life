@@ -19,3 +19,23 @@ bool Board::at(int row, int col) {
   }
   return contents_.at(row * ncols_ + col);
 }
+
+bool Board::next_state(int row, int col) {
+  int count = num_live_neighbors_(row, col);
+  return count == 3 || (at(row, col) && count == 2);
+}
+
+int Board::num_live_neighbors_(int row, int col) {
+  int count = 0;
+  for (int i = row - 1; i <= row + 1; i++) {
+    for (int j = col - 1; j <= col + 1; j++) {
+      if (i == row && j == col) {
+	continue;
+      }
+      if (at(i, j)) {
+	++count;
+      }
+    }
+  }
+  return count;
+}
