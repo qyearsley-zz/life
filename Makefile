@@ -11,7 +11,7 @@ CPPFLAGS += -isystem $(GTEST_DIR)/include
 
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-TESTS = life_unittest
+TESTS = board_unittest
 
 all : $(TESTS)
 
@@ -36,11 +36,11 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-life.o : life.cc life.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c life.cc
+board.o : board.cc board.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c board.cc
 
-life_unittest.o : life_unittest.cc life.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c life_unittest.cc
+board_unittest.o : board_unittest.cc board.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c board_unittest.cc
 
-life_unittest : life.o life_unittest.o gtest_main.a
+board_unittest : board.o board_unittest.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
