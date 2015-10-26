@@ -1,5 +1,5 @@
-#ifndef LIFE_H_
-#define LIFE_H_
+#ifndef BOARD_H_
+#define BOARD_H_
 
 #include <vector>
 
@@ -18,4 +18,4 @@ class Board {
     int ncols_;
 };
 
-#endif  // LIFE_H_
+#endif  // BOARD_H_

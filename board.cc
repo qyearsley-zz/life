@@ -1,4 +1,6 @@
-#include "life.h"
+#include "board.h"
+
+#include <vector>
 
 Board::Board(int nrows, int ncols) :
     contents_(nrows * ncols), nrows_(nrows), ncols_(ncols) {}
@@ -14,7 +16,7 @@ Board::Board(bool *contents, int nrows, int ncols) :
 }
 
 bool Board::at(int row, int col) {
-  if (row < 0 || col < 0 || row >= nrows_ || col > ncols_) {
+  if (row < 0 || col < 0 || row >= nrows_ || col >= ncols_) {
     return false;
   }
   return contents_.at(row * ncols_ + col);
@@ -38,4 +40,14 @@ int Board::num_live_neighbors_(int row, int col) {
     }
   }
   return count;
+}
+
+void Board::tick() {
+  std::vector<bool> next;
+  for (int i = 0; i < nrows_; i++) {
+    for (int j = 0; j < ncols_; j++) {
+      next.push_back(next_state(i, j));
+    }
+  }
+  contents_ = next;
 }

@@ -1,5 +1,4 @@
-#include <limits.h>
-#include "life.h"
+#include "board.h"
 #include "gtest/gtest.h"
 
 TEST(EmptyConstructor, BoardIsEmpty) {
@@ -129,4 +128,19 @@ TEST(NextState, Overcrowd8) {
   Board b(example, 3, 3);
   EXPECT_TRUE(b.at(1, 1));
   EXPECT_FALSE(b.next_state(1, 1));
+}
+
+TEST(Tick, Tick) {
+  bool example[] = {
+    0, 1, 0,
+    1, 0, 1,
+  };
+  Board b(example, 2, 3);
+  b.tick();
+  EXPECT_FALSE(b.at(0, 0));
+  EXPECT_TRUE(b.at(0, 1));
+  EXPECT_FALSE(b.at(0, 2));
+  EXPECT_FALSE(b.at(1, 0));
+  EXPECT_TRUE(b.at(1, 1));
+  EXPECT_FALSE(b.at(1, 2));
 }
