@@ -1,7 +1,8 @@
-#include "board.h"
-
+#include "assert.h"
 #include <string>
 #include <vector>
+
+#include "board.h"
 
 const char kRowSeparator = '\n';
 const char kAlive = '#';
@@ -21,8 +22,14 @@ Board::Board(bool *contents, int nrows, int ncols) :
 }
 
 Board::Board(std::string contents) {
+  contents_;
   int ncols = contents.find(kRowSeparator);
-  "00\n"
+  int nrows = 0;
+  for (int i = 0; i < contents.size(); i++) {
+    if (contents.at(i) == kAlive) {
+    }
+  }
+  assert(ncols
   int row = 0;
   for (int i = 0; i < contents.size(); i++) {
   }
