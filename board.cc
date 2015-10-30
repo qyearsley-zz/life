@@ -1,6 +1,11 @@
 #include "board.h"
 
+#include <string>
 #include <vector>
+
+const char kRowSeparator = '\n';
+const char kAlive = '#';
+const char kDead = '.';
 
 Board::Board(int nrows, int ncols) :
     contents_(nrows * ncols), nrows_(nrows), ncols_(ncols) {}
@@ -12,6 +17,14 @@ Board::Board(bool *contents, int nrows, int ncols) :
       int pos = i * ncols + j;
       contents_.at(pos) = contents[pos] ? true : false;
     }
+  }
+}
+
+Board::Board(std::string contents) {
+  int ncols = contents.find(kRowSeparator);
+  "00\n"
+  int row = 0;
+  for (int i = 0; i < contents.size(); i++) {
   }
 }
 

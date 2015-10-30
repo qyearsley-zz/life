@@ -2,15 +2,17 @@
 #define BOARD_H_
 
 #include <vector>
+#include <string>
 
 class Board {
   public:
     Board(int nrows, int ncols);
     Board(bool *contents, int nrows, int ncols);
+    Board(std::string contents);
     bool at(int row, int col);
     bool next_state(int row, int col);
     void tick();
-    void print();
+    std::string to_string();
   private:
     int num_live_neighbors_(int row, int col);
     std::vector<bool> contents_;
