@@ -1,4 +1,3 @@
-#include "assert.h"
 #include <string>
 #include <vector>
 
@@ -11,28 +10,38 @@ const char kDead = '.';
 Board::Board(int nrows, int ncols) :
     contents_(nrows * ncols), nrows_(nrows), ncols_(ncols) {}
 
-Board::Board(bool *contents, int nrows, int ncols) :
-    contents_(nrows * ncols), nrows_(nrows), ncols_(ncols) {
-  for (int i = 0; i < nrows; i++) {
-    for (int j = 0; j < ncols; j++) {
-      int pos = i * ncols + j;
-      contents_.at(pos) = contents[pos] ? true : false;
+Board::Board(std::string contents) {
+  nrows_ = 0;
+  for (size_t i = 0; i < contents.size(); i++) {
+    if (contents.at(i) == kAlive) {
+      contents_.push_back(true);
+    } else if (contents.at(i) == kDead) {
+      contents_.push_back(false);
+    } else if (contents.at(i) == kRowSeparator) {
+      nrows_++;
     }
+  }
+  ncols_ = contents.find(kRowSeparator);
+  if (!is_valid()) {
+    nrows_ = 0;
+    ncols_ = 0;
+    contents_.clear();
   }
 }
 
-Board::Board(std::string contents) {
-  contents_;
-  int ncols = contents.find(kRowSeparator);
-  int nrows = 0;
-  for (int i = 0; i < contents.size(); i++) {
-    if (contents.at(i) == kAlive) {
+bool Board::is_valid() {
+  return (ncols_ * nrows_ == contents_.size());
+}
+
+std::string Board::to_string() {
+  std::string result;
+  for (int row = 0; row < nrows_; row++) {
+    for (int col = 0; col < ncols_; col++) {
+      result += at(row, col) ? kAlive : kDead;
     }
+    result += kRowSeparator;
   }
-  assert(ncols
-  int row = 0;
-  for (int i = 0; i < contents.size(); i++) {
-  }
+  return result;
 }
 
 bool Board::at(int row, int col) {

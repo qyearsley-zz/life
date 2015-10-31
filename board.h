@@ -7,8 +7,8 @@
 class Board {
   public:
     Board(int nrows, int ncols);
-    Board(bool *contents, int nrows, int ncols);
     Board(std::string contents);
+    bool is_valid();
     bool at(int row, int col);
     bool next_state(int row, int col);
     void tick();
