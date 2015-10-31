@@ -13,6 +13,7 @@ class Board {
     bool next_state(int row, int col);
     void tick();
     std::string to_string();
+    void random_fill();
   private:
     int num_live_neighbors_(int row, int col);
     std::vector<bool> contents_;

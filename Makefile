@@ -13,7 +13,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 TESTS = board_unittest
 
-all : $(TESTS)
+all : life $(TESTS)
 
 clean :
 	rm -f $(TESTS) gtest.a gtest_main.a *.o
@@ -43,4 +43,10 @@ board_unittest.o : board_unittest.cc board.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c board_unittest.cc
 
 board_unittest : board.o board_unittest.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+life.o : life.cc board.cc board.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c life.cc
+
+life : life.o board.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

@@ -1,5 +1,8 @@
 #include <string>
 #include <vector>
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "board.h"
 
@@ -30,7 +33,7 @@ Board::Board(std::string contents) {
 }
 
 bool Board::is_valid() {
-  return (ncols_ * nrows_ == contents_.size());
+  return (ncols_ * nrows_ <= (int)contents_.size());
 }
 
 std::string Board::to_string() {
@@ -79,4 +82,11 @@ void Board::tick() {
     }
   }
   contents_ = next;
+}
+
+void Board::random_fill(){
+  srand(time(NULL));
+  for (int i = 0; i < nrows_ * ncols_; i++) {
+    contents_.at(i) = rand() % 2 == 0;
+  }
 }
