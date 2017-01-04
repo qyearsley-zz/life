@@ -1,10 +1,13 @@
-#include <string>
-#include <vector>
-#include <time.h>
+// Copyright 2017 Quinten Yearsley
+
+#include "./board.h"
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-#include "board.h"
+#include <string>
+#include <vector>
 
 const char kRowSeparator = '\n';
 const char kAlive = '#';
@@ -33,7 +36,7 @@ Board::Board(std::string contents) {
 }
 
 bool Board::is_valid() {
-  return (ncols_ * nrows_ <= (int)contents_.size());
+  return (ncols_ * nrows_ <= static_cast<int>(contents_.size()));
 }
 
 std::string Board::to_string() {
@@ -64,10 +67,10 @@ int Board::num_live_neighbors_(int row, int col) {
   for (int i = row - 1; i <= row + 1; i++) {
     for (int j = col - 1; j <= col + 1; j++) {
       if (i == row && j == col) {
-	continue;
+        continue;
       }
       if (at(i, j)) {
-	++count;
+        ++count;
       }
     }
   }
@@ -84,9 +87,9 @@ void Board::tick() {
   contents_ = next;
 }
 
-void Board::random_fill(){
-  srand(time(NULL));
+void Board::random_fill() {
+  unsigned int seed = time(NULL);
   for (int i = 0; i < nrows_ * ncols_; i++) {
-    contents_.at(i) = rand() % 2 == 0;
+    contents_.at(i) = rand_r(&seed) % 2 == 0;
   }
 }

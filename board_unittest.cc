@@ -1,4 +1,6 @@
-#include "board.h"
+// Copyright 2017 Quinten Yearsley
+
+#include "./board.h"
 #include "gtest/gtest.h"
 
 TEST(EmptyConstructor, BoardIsEmpty) {

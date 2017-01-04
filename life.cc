@@ -1,12 +1,15 @@
-#include <fstream>
-#include <iostream>
+// Copyright 2017 Quinten Yearsley
+
 #include <pthread.h>
-#include <sstream>
 #include <stdlib.h>
-#include <string>
 #include <unistd.h>
 
-#include "board.h"
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+#include "./board.h"
 
 void clear() {
   system("clear");
@@ -15,6 +18,7 @@ void clear() {
 int main(int argc, char **argv) {
   Board board(30, 60);
   std::cout << argc << std::endl;
+
   if (argc < 2) {
     board.random_fill();
   } else {
@@ -26,6 +30,7 @@ int main(int argc, char **argv) {
     Board b(read_string);
     board = b;
   }
+
   while (true) {
     clear();
     std::cout << board.to_string();

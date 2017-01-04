@@ -50,3 +50,6 @@ life.o : life.cc board.cc board.h
 
 life : life.o board.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+lint :
+	cpplint.py *.h *.cc
