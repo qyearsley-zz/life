@@ -13,8 +13,8 @@ const char kRowSeparator = '\n';
 const char kAlive = '#';
 const char kDead = '.';
 
-Board::Board(int nrows, int ncols) :
-    contents_(nrows * ncols), nrows_(nrows), ncols_(ncols) {}
+Board::Board(int nrows, int ncols)
+    : contents_(nrows * ncols), nrows_(nrows), ncols_(ncols) {}
 
 Board::Board(std::string contents) {
   nrows_ = 0;

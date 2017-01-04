@@ -15,7 +15,7 @@ void clear() {
   system("clear");
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
   Board board(30, 60);
   std::cout << argc << std::endl;
 
