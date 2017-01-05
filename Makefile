@@ -16,7 +16,7 @@ TESTS = board_unittest
 all : life $(TESTS)
 
 clean :
-	rm -f $(TESTS) gtest.a gtest_main.a *.o
+	rm -f life $(TESTS) gtest.a gtest_main.a *.o
 
 GTEST_DIR = /usr/src/gtest
 
